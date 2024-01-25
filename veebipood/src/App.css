@@ -7,7 +7,7 @@
 }
 
 .pilt:hover {
-  width: 120px;
+  width: 120px; 
   cursor: pointer;
 }
 
@@ -28,4 +28,12 @@
 .nupp:active {
   width: 110px;
   transform: rotate(1.1deg);
+}
+
+p {
+  border: 1px solid red;
+}
+
+.tekst {
+  border: 3px double green;
 }
