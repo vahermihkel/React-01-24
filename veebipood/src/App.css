@@ -7,13 +7,13 @@
 }
 
 .pilt:hover {
-  width: 120px; 
   cursor: pointer;
+  transform: scale(1.1);
+  opacity: 70%;
 }
 
 .pilt:active {
-  width: 110px;
-  transform: rotate(1.1deg);
+  transform: rotate(5deg);
 }
 
 .nupp {
@@ -21,19 +21,111 @@
 }
 
 .nupp:hover {
-  width: 120px;
+  /* width: 120px; */
+  background-color: brown;
   cursor: pointer;
 }
 
 .nupp:active {
-  width: 110px;
+  /* width: 110px; */
   transform: rotate(1.1deg);
 }
 
-span {
+/* span {
   border: 1px solid red;
-}
+} */
 
 .tekst {
   border: 3px double green;
+}
+
+.navlink:hover img {
+  filter: invert(32%) sepia(88%) saturate(7145%) hue-rotate(311deg) brightness(87%) contrast(109%);
+}
+
+.nav {
+  background-color: #5f5f5f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navlink {
+  text-decoration: none;
+  margin: 3px;
+}
+
+.navlink span {
+  color: white;
+  position: relative;
+  top: -4px;
+  /* täpselt sama-> bottom: 4px; */
+}
+
+.navlink:hover span {
+  color: pink;
+}
+
+.leht {
+  background-color: lightgray;
+  min-height: 100vh;
+  /* 100vw ekraani laius (50vw */
+}
+
+
+.summa {
+  background-color: white;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(78, 75, 102, .6);
+  border: none;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.summa-aktiivne {
+  background-color: white;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgb(227, 6, 140);
+  border: 2px solid rgb(227, 6, 140);
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.kingitus {
+  width: 30px;
+  height: 30px;
+}
+
+.linn {
+  color: #14142b;
+  font-family: Inter,Tahoma,Helvetica,sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.linn:hover {
+  color: #e3068c;
+  text-decoration: underline;
+}
+
+.linn-aktiivne {
+  color: #14142b;
+  font-family: Inter,Tahoma,Helvetica,sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.linn-aktiivne:hover {
+  color: #e3068c;
 }
