@@ -1,11 +1,53 @@
 import { useState } from 'react'
 
+// tumesinine - liigitus. JS: function, const, let. HTML: div, button, img
+//             reserveeritud sõna. JS: true, false, undefined, null
+// tavaline sinine - meie tehtud muutuja. useState vasak pool, useRef muutuja
+// helesinine - HTML: elemendi atribuut  onClick, className, src, alt, type, disabled
+//              JS: JavaScripti enda muutuja. console (console.log())  localStorage
+//                      .current.value       .length
+// kollane - funktsioon
+// oranž/punane - jutumärkides väärtus. sõne, string
+// valge - erinevad märgid, HTMLs väljakuvamine
+// heleroheline - number
+// roheline + suure tähega - HTMLs tag imporditud klass (failina). JS sissekirjutatud klass
+// tumeroheline - kommentaar
+// lilla - käsklus: if, else, import, export, return, from
+// sulgudel erinevad värvused - sulg mis algab peab alati lõppema ja see värvitakse sama värvi
+// {{{{{{{{{{{{[[[(([[{{}}]]))]]]}}}}}}}}}}}}
+
+// [] -> useState muutuja + funktsioon. Hiljem: listi hoidmiseks [1,2,3,4,5]
+// {} -> HTMLs tähistame JavaScripti (dünaamika - muutuv seisund)
+//       JS koodiblokk: funktsiooni koodiblokk, if/else koodiblokk. Hiljem: objekti hoidmiseks {nimi: "Coca", hind: 5, pilt: ""}
+// () -> funktsiooni tähistus    useState()   const nulli = () => {}    onClick={() => uuenda()}
+// tavaline sulg ja kollane käib kokku
+// ;  -> rea lõpu tähistus
+// =  -> väärtuse andmine
+// === -> kontrollimine kas vasak ja parem pool on võrdsed
+// ==  -> seda me ei tee.
+//     ilma tüübi kontrollita kas vasak ja parem pool ühtivad (seda React ei luba -> viskab warningu)
+// !   -> kui on true, siis tee false-ks
+// !== -> kontrollime, et vasak ja parem pool ei ühti
+// ? :  -> kui on enne küsimärki tõde, siis võta küsimärgi ja kooloni vaheline väärtus, 
+//          kui ei ole tõde, siis kooloni järgne väärtus
+//              KÜSIMUS ? VÄÄRTUS : VÄÄRTUS
+// &&  -> kui vasakul pool on tõde, siis näita parempoolset
+// ||  -> kui vasakul pool on tühjus, siis võta parempoolne
+// >=   <=   >   <   ===   võrdlemiseks
+// nooled eksisteerivad: const nulli = () => {}      onClick={() => nulli()}
+// jutumärkidena võib kasutada nii ""   ''
+//    useState("Uuenda kogust!");           useState('Uuenda kogust!');
+// import { useState } from "react"    import { useState } from 'react'
+
+
 function Avaleht() {
   const [kogus, uuendaKogus] = useState(0); // kogus, summa, kogusumma, hind
   const [sonum, uuendaSonum] = useState("Uuenda kogust!"); // postiindeks, isikukood, telefoninumber, nime, e-mail
   const [laigitud, uuendaLaigitud] = useState(false); // makstud, sisselogitud, tellitud, registreerunud, täisealine
+  // const date = new Date();
 
   function nulli() {
+    console.log("Nulli funktsioon käiviuts");
     uuendaKogus(0);
     uuendaSonum("Nullisid koguse!");
   }
