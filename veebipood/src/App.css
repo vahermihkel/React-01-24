@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.App-dark {
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 100vh; 
+  /* vh --> view height protsentides */
+}
+
 .pilt {
   width: 100px;
 }
@@ -101,7 +109,7 @@
 }
 
 .linn {
-  color: #14142b;
+  /* color: #14142b; */
   font-family: Inter,Tahoma,Helvetica,sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -116,7 +124,7 @@
 }
 
 .linn-aktiivne {
-  color: #14142b;
+  /* color: #14142b; */
   font-family: Inter,Tahoma,Helvetica,sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -128,4 +136,8 @@
 
 .linn-aktiivne:hover {
   color: #e3068c;
+}
+
+.kuldne {
+  color: goldenrod;
 }
