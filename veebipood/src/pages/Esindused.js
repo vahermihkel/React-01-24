@@ -27,7 +27,16 @@ function Esindused() {
         <div>
           <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
           {keskused.map(keskus => <div>{keskus}</div>)}
+          {/* 
+          KOJU:
+          Kustutamise võimekus
+          Sama lõppu lisamise võimekus
+          Läbi inputi enda kirjutatu lõppu lisamise võimekus
+          Saab teha ainult Tallinnale, sest seal on .map() 
+          */}
         </div>}
+
+{/* Hard-coded allpool */}
 
         {linn === "Tartu" && 
         <div>

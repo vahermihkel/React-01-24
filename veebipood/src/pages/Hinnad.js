@@ -10,7 +10,7 @@ import { useState } from 'react'
 // Tühjenda nupp, mis kustub kui on .length väärtus 0
 // Kui pole ühtegi töötajat, siis kuva <div>Pole ühtegi hinda nähtaval</div>
  
-function Hinnad() {
+function Hinnad() {                  //     0    1    2   3   4   5   6
   const [hinnad, uuendaHinnad] = useState([312, 1234, 56, 88, 8, 234, 12]);
 
   const sorteeriAZ = () => {
@@ -30,8 +30,83 @@ function Hinnad() {
     uuendaHinnad(hinnad.slice());
   }
 
+  // const sorteeriKasvavaltChatGpt = () => {
+  //   const vastus = [...hinnad].sort((a, b) => a - b);
+  //   uuendaHinnad(vastus);
+  // }
+
+  // const sorteeriKasvavaltChatGpt2 = () => {
+  //   hinnad.sort((a, b) => a - b);
+  //   uuendaHinnad([...hinnad]); // numbrid.slice() ja [...numbrid]   teeb täpselt sama välja
+  // }
+
   const sorteeriKahanevalt = () => {
     hinnad.sort((a, b) => b - a);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  // 22 % 5 === 2
+  // 23 % 5 === 3
+  // 22 % 6 === 4
+  // 23 % 6 === 5
+
+  // !== 0
+  // === 1
+
+  // const filtreeriAlgavad1 = () => {
+  //   const vastus = hinnad.filter(y => {
+  //   const numStr = y.toString();
+  //   return numStr.startsWith('1');
+  //   });
+  //   uuendaHinnad(vastus);
+  // }
+
+//   const filtreeriSisaldavad3 = () => {
+//     const vastus = numbrid.filter(s => {
+//     const numStr = s.toString();  teisendab stringiks
+//     return numStr.includes('3');  kontroll kas sisaldab
+//     });
+//     uuendaNumbrid(vastus);
+// }
+
+  // const filtreeriSisaldavad3 = () => {
+  //   const vastus = hinnad.filter(hind => hind.toString().includes('3'));
+  //   uuendaHinnad(vastus);
+  // }
+
+  const lisaHind123 = () => {
+    hinnad.push(123);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  const lisaHind = (lisatavHind) => {
+    hinnad.push(lisatavHind);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  const kustutaEsimene = () => {
+    hinnad.splice(0, 1); // esimene on järjekorranumber, teine mitu tk tahan ühe nupuvajutusega kustutada
+    uuendaHinnad(hinnad.slice());
+  }
+
+  const kustutaTeine = () => {
+    hinnad.splice(1, 1);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  const kustutaKolmas = () => {
+    hinnad.splice(2, 1);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  const kustutaNeljas = () => {
+    hinnad.splice(3, 1);
+    uuendaHinnad(hinnad.slice());
+  }
+
+  // kui siin on sulgude sisu täidetud, siis tuleb midagi onClick seest kaasa saata
+  const kustutaHind = (jrknr) => {
+    hinnad.splice(jrknr, 1);
     uuendaHinnad(hinnad.slice());
   }
 
@@ -45,7 +120,22 @@ function Hinnad() {
           <button onClick={sorteeriKasvavalt} >Sorteeri kasvavalt</button>
           <button onClick={sorteeriKahanevalt} >Sorteeri kahanevalt</button>
 
-          {hinnad.map(hinnad => <div>{hinnad}</div>)}
+          <br />
+          <button onClick={lisaHind123}>Lisa hind 123 lõppu juurde</button>
+          <br />
+          <button onClick={kustutaEsimene}>Kustuta esimene</button>
+          <button onClick={kustutaTeine}>Kustuta teine</button>
+          <button onClick={kustutaKolmas}>Kustuta kolmas</button>
+          <button onClick={kustutaNeljas}>Kustuta neljas</button>
+
+
+
+          {hinnad.map((hind, jrknr) => 
+            <div key={jrknr}>
+              {hind} 
+              <button onClick={() => kustutaHind(jrknr)}>x</button> 
+              <button onClick={() => lisaHind(hind)}>Lisa</button> 
+            </div>)}
           <div><h4>Hindasid on: {hinnad.length} </h4></div>
           <button onClick={() => uuendaHinnad([])} >Eemalda hinnad</button>
         </div>}

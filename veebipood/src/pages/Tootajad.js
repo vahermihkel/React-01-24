@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import tootajadJSON from "../data/tootajad.json";
 
 // Arvutitark.ee --> 10inimest 2 aastat 5 arendajat
 // Tiimijuht ---> koordineerib, kliendiga suhtlus
@@ -23,18 +24,22 @@ import { useState } from 'react'
  
 function Tootajad() {
  
-  const [tootajad, uuendaTootajad] = useState(["Urmet", "Kaido", "Liina", "Maiki", "Heidi", "Epp", "Kaire", "Anet", "Maarja"]);
+  const [tootajad, uuendaTootajad] = useState(tootajadJSON);
 
 // sorteeritakse KAS sõnu või numbreid
 // kui võrdlen sõnu (tähti) --> a.localeCompare(b)
 // kui võrdlen numbreid     --> a - b
 
   const originaali = () => {
-    uuendaTootajad(["Urmet", "Kaido", "Liina", "Maiki", "Heidi", "Epp", "Kaire", "Anet", "Maarja"]);
+    uuendaTootajad(tootajadJSON);
   }
 
   const sorteeriAZ = () => {
-    tootajad.sort((a,b) => a.localeCompare(b));
+    tootajad.sort((a,b) => {
+      console.log(a);
+      console.log(b);
+      return a.localeCompare(b);
+    });
     uuendaTootajad(tootajad.slice());
   }
 
@@ -59,7 +64,10 @@ function Tootajad() {
   }
 
   const filtreeriTgaLoppev = () => {
-    const vastus = tootajad.filter(t => t.endsWith("t") === true);
+    const vastus = tootajad.filter(t => {
+      console.log(t);
+      return t.endsWith("t") === true;
+    });
     uuendaTootajad(vastus);
   }
 
@@ -82,6 +90,49 @@ function Tootajad() {
     const vastus = tootajad.filter(yksTootaja => yksTootaja.includes("ai"));
     uuendaTootajad(vastus);
   }
+
+  // const filtreeriRohkemKui3SonalisedChatGPT = () => {
+  //   const vastus = tootajad.filter(book => {
+  //     const sonadeArv = book.split(' ').length;
+  //     return sonadeArv >= 3;
+  //   });
+  //   uuendaTootajad(vastus);
+  // }
+
+  // const filtreeriRohkemKui3SonalisedMEIE = () => {
+  //   const vastus = tootajad.filter(book => book.split(' ').length >= 3);
+  //   uuendaTootajad(vastus);
+  // }
+
+  // const filtreeriEelviimaneTahtOnCChatGPT = () => {
+  //   const vastus = tootajad.filter(book => {
+  //     if (book.length >= 2) {
+  //       const eelviimaneTaht = book.charAt(book.length - 2);
+  //       return eelviimaneTaht.toLowerCase() === 'c';
+  //     }
+  //     return false; 
+  //   });
+  //   uuendaTootajad(vastus);
+  // }
+  // .length -> 10
+  //  0123456789
+  // "Tõde ja õi"
+
+  // const filtreeriEelviimaneTahtOnCMEIE = () => {
+  //   const vastus = tootajad.filter(book => book.charAt(book.length - 2) === "c");
+  //   uuendaTootajad(vastus);
+  // }
+
+  const nimiRef = useRef();
+
+  const lisa = () => {
+    tootajad.push(nimiRef.current.value);
+    uuendaTootajad(tootajad.slice());
+  }
+
+  // Tootajad.js vaates kodus:
+  // 1. Kustutamine (igaühele nupp)
+  // 2. Igaühe lõppu lisamise võimekus
  
   return (
     <div>
@@ -108,6 +159,10 @@ function Tootajad() {
             <button onClick={ () => uuendaTootajad ([])} >Eemalda töötajad</button> 
         </div>
       }
+
+      <label>Uue töötaja nimi</label> <br />
+      <input ref={nimiRef} type="text" /> <br />
+      <button onClick={lisa}>Lisa</button> <br />
   
       {tootajad.length === 0 &&  <div>Ühtegi töötajat pole nähtaval</div>}
   
