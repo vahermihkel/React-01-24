@@ -1,5 +1,6 @@
 import { useState } from 'react'
- 
+import hinnadFailist from "../data/hinnad.json"; 
+
 // App.js sees teha URL ja faili seos (URL-ks pange sama mis faili nimi)
 // URL-le sattumise võimekus läbi <Link>
 // Array väljakuvamine (List, Massiiv) läbi useState (.map())
@@ -10,8 +11,8 @@ import { useState } from 'react'
 // Tühjenda nupp, mis kustub kui on .length väärtus 0
 // Kui pole ühtegi töötajat, siis kuva <div>Pole ühtegi hinda nähtaval</div>
  
-function Hinnad() {                  //     0    1    2   3   4   5   6
-  const [hinnad, uuendaHinnad] = useState([312, 1234, 56, 88, 8, 234, 12]);
+function Hinnad() {                  
+  const [hinnad, uuendaHinnad] = useState(hinnadFailist);
 
   const sorteeriAZ = () => {
     //hinnad.sort();
@@ -110,6 +111,11 @@ function Hinnad() {                  //     0    1    2   3   4   5   6
     uuendaHinnad(hinnad.slice());
   }
 
+  const filtreeriPaarisarvud = () => {
+    const vastus = hinnad.filter(hind => hind % 2 === 0);
+    uuendaHinnad(vastus);
+  }
+
   return (
     <div>
       { hinnad.length > 0 &&
@@ -119,14 +125,17 @@ function Hinnad() {                  //     0    1    2   3   4   5   6
 
           <button onClick={sorteeriKasvavalt} >Sorteeri kasvavalt</button>
           <button onClick={sorteeriKahanevalt} >Sorteeri kahanevalt</button>
+          <br /><br />
+          <button onClick={filtreeriPaarisarvud}>Jäta alles paarisarvud</button>
 
           <br />
           <button onClick={lisaHind123}>Lisa hind 123 lõppu juurde</button>
           <br />
           <button onClick={kustutaEsimene}>Kustuta esimene</button>
-          <button onClick={kustutaTeine}>Kustuta teine</button>
+          <button disabled={hinnad.length < 2} onClick={kustutaTeine}>Kustuta teine</button>
+          {/* ise */}
           <button onClick={kustutaKolmas}>Kustuta kolmas</button>
-          <button onClick={kustutaNeljas}>Kustuta neljas</button>
+          {hinnad.length >= 4 && <button onClick={kustutaNeljas}>Kustuta neljas</button>}
 
 
 

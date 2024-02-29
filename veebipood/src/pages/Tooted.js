@@ -1,5 +1,5 @@
 import { useState } from 'react'
- 
+import tootedFailist from "../data/tooted.json";
  
 // App.js sees teha URL ja faili seos (URL-ks pange sama mis faili nimi)
 // URL-le sattumise võimekus läbi <Link>
@@ -10,7 +10,12 @@ import { useState } from 'react'
  
 function Tooted() {
  
-  const [tooted, uuendaTooted] = useState(["Nobe", "BMW", "Tesla"]);
+  const [tooted, uuendaTooted] = useState(tootedFailist);
+
+  // A-Z
+  // Z-A
+  // tähtede arv kasvavalt
+  // tähtede arv kahanevalt
 
   const sorteeriAZ = () => {
     tooted.sort();

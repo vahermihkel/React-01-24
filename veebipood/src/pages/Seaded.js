@@ -26,7 +26,8 @@ function Seaded() { // kui localStorage-s sellist võtit ei ole, tuleb väärtus
       toast.error("E-mail pole korrektne!")
     } else {
       muudaEmail(emailRef.current.value);
-      toast.success("Email uuendatud!")
+      toast.success("Email uuendatud!");
+      emailRef.current.value = "";
     }
   }
 
@@ -50,6 +51,7 @@ function Seaded() { // kui localStorage-s sellist võtit ei ole, tuleb väärtus
       
     muudaAadress(aadressRef.current.value);
     toast.success("Aadress uuendatud!");
+    aadressRef.current.value = "";
   }
 
   const sisestaTelefon = () => {
@@ -57,7 +59,8 @@ function Seaded() { // kui localStorage-s sellist võtit ei ole, tuleb väärtus
       toast.error("Telefon pole korrektne");
     } else {
       muudaTelefon(telefonRef.current.value);
-      toast.success("Telefon uuendatud!")
+      toast.success("Telefon uuendatud!");
+      telefonRef.current.value = "";
     }
   }
 

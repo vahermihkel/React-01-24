@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import tootedFailist from "../data/tooted.json";
 
 function LisaToode() {
   const [sonum, muudaSonum] = useState("");
@@ -18,6 +19,10 @@ function LisaToode() {
     } else {
       // muudaSonum("Toode lisatud: " + inputiLuger.current.value);
       toast.success("Toode lisatud: " + inputiLuger.current.value);
+      tootedFailist.push(inputiLuger.current.value);
+      inputiLuger.current.value = "";
+      // ma ei pane useState funktsiooni väljakutset
+      // muuda/uuendaTooted vms sp, et ei uuenda HTMLi
     }
   }
 
