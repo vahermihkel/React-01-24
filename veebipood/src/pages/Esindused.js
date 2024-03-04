@@ -15,6 +15,28 @@ const sorteeriAZ = () => {
   keskused.sort();
   uuendaKeskused(keskused.slice());
 }
+
+const sorteeriZA = () => {}
+
+const sorteeriTahedKasvavalt = () => {}
+
+const sorteeriTahedKahanevalt = () => {}
+
+const sorteeriTeineTahtAZ = () => {}
+
+const filtreeriEgaLoppevad = () => {}
+
+const filtreeriVah7Tahelised = () => {}
+
+const filtreeri9Tahelised = () => {}
+
+const filtreeriLyhenditIsSisaldavad = () => {}
+
+const filtreeriNeljasTahtI = () => {}
+
+
+
+
  
 const kustutaTallinnaEsindus =(index) => {
   keskused.splice(index, 1);
@@ -46,10 +68,12 @@ const kustutaTallinnaEsindus =(index) => {
     { linn === "Tallinn" && 
     <div>
       <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
-      {keskused.map((keskus,index)  => <div>{keskus}
+      {keskused.map((keskus,index)  => 
+        <div key={index}>
+          {keskus}
           <button onClick={() => kustutaTallinnaEsindus(index)}>Kustuta</button> 
           <button onClick={() => lisaTallinnaEsindus(keskus)}>Lisa lõppu üks juurde</button> 
-    </div>)}
+        </div>)}
  
       <label>Uue Esinduse nimi</label> <br />
       <input ref={nimiRef} type="text" /> <br />

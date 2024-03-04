@@ -33,7 +33,7 @@ function Ostukorv() {
       </div>}
 
       { ostukorv.map((toode, index) => 
-        <div>
+        <div key={index}>
           {index}.
           {toode}
           <button onClick={() => kustutaOstukorvist(index)}>Kustuta</button>

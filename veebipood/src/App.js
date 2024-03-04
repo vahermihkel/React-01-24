@@ -15,6 +15,16 @@ import Tootajad from './pages/Tootajad';
 import Tooted from './pages/Tooted';
 import HaldaTooted from './pages/HaldaTooted';
 import LisaHind from './pages/LisaHind';
+import HaldaTootajad from './pages/HaldaTootajad';
+import HaldaEsindusi from './pages/HaldaEsindusi';
+import HaldaHindu from './pages/HaldaHindu';
+import YksToode from './pages/YksToode';
+
+// 1 a -> 1000    1500
+// 2 a -> 2000
+// 3 a -> 3000    2000
+// 4 a -> 4000
+// 5 a -> 5000
  
 function App() {
   const [tume, uuendaTume] = useState(localStorage.getItem("onTume") === "jah");
@@ -76,6 +86,9 @@ function App() {
           <Link className="navlink" to="/lisa-hind">
             <span>Lisa hind</span>
           </Link>
+          <Link className="navlink" to="/halda-tootajad">
+            <span>Halda töötajaid</span>
+          </Link>
         </div>
         <div>
           <button onClick={tumedaks}>Tume</button>
@@ -97,6 +110,11 @@ function App() {
         <Route path="tooted" element={ <Tooted />} />
         <Route path="halda" element={ <HaldaTooted />} />
         <Route path="lisa-hind" element={ <LisaHind />} />
+        <Route path="halda-tootajad" element={ <HaldaTootajad />} />
+        <Route path="halda-esindused" element={ <HaldaEsindusi />} />
+        <Route path="halda-hinnad" element={ <HaldaHindu />} />
+        <Route path="toode/:index" element={ <YksToode />} />
+
         <Route path="*" element={ <NotFound />} />
       </Routes>
  

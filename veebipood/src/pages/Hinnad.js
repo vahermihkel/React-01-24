@@ -76,45 +76,89 @@ function Hinnad() {
   // }
 
   const lisaHind123 = () => {
-    hinnad.push(123);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.push(123);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const lisaHind = (lisatavHind) => {
-    hinnad.push(lisatavHind);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.push(lisatavHind);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const kustutaEsimene = () => {
-    hinnad.splice(0, 1); // esimene on järjekorranumber, teine mitu tk tahan ühe nupuvajutusega kustutada
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.splice(0, 1); // esimene on järjekorranumber, teine mitu tk tahan ühe nupuvajutusega kustutada
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const kustutaTeine = () => {
-    hinnad.splice(1, 1);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.splice(1, 1);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const kustutaKolmas = () => {
-    hinnad.splice(2, 1);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.splice(2, 1);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const kustutaNeljas = () => {
-    hinnad.splice(3, 1);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.splice(3, 1);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   // kui siin on sulgude sisu täidetud, siis tuleb midagi onClick seest kaasa saata
   const kustutaHind = (jrknr) => {
-    hinnad.splice(jrknr, 1);
-    uuendaHinnad(hinnad.slice());
+    hinnadFailist.splice(jrknr, 1);
+    uuendaHinnad(hinnadFailist.slice());
   }
 
   const filtreeriPaarisarvud = () => {
     const vastus = hinnad.filter(hind => hind % 2 === 0);
     uuendaHinnad(vastus);
   }
+
+  // Alati muutujate loomisel kasutada "const" eesliidet, kui just ei teki vajadus kasutada "let"
+
+  // let summa = 0;
+  // summa = 0 + 8;
+  // summa = 8 + 5;
+  // summa = 13+ 2;
+  // return summa; --> 15
+
+  const hinnadKokku = () => {
+    let summa = 0;
+    // summa = summa + 312;
+    // summa = summa + 1234;
+    // summa = summa + 56;
+    // summa = summa + 88;
+
+    // summa += 312;
+    // summa += 1234;
+    // summa += 56;
+    // summa += 88;
+    hinnad.forEach(hind => summa = summa + hind);
+    return summa;
+  }
+
+  // .map(hind => MILLEGA_ASENDATAKSE)
+  // .sort((a,b) => PLUSS_VÕI_MIINUS) -> plussiga muudetakse järjekord
+  // .filter(hind => ÕIGE_VÕI_VÄÄR) -> õigega jäetakse alles
+  // .forEach(hind => summa = summa + hind) -> igaühe kohta tehakse midagi 
+
+  // onClick={() => sorteeriAZ()} --> ÕIGE.
+  // onClick={sorteeriAZ} --> ÕIGE.
+  // onClick={sorteeriAZ()} --> VALE. Jääb lõputu loop (tsükkel), sest sorteeriAZ funktsiooni sees
+  //      on useState-i parempoolne funktsioon, mis läheb HTMLi uuendama. Ja kui seda tehakse,
+  //      siis pannakse uuesti see funktsioon käima, mis läheb omakorda uuesti HTMLi uuendama
+
+  // <div>Kokkuarvutus, mis tagastab numbri: {hinnadKokku()}</div> --> ÕIGE.
+  // <div>Kokkuarvutus, mis tagastab numbri: {hinnadKokku}</div> --> VALE. Sest ei käivitu
+  // <div>Kokkuarvutus, mis tagastab numbri: {() => hinnadKokku()}</div> --> VALE. Sest ei käivitu
+
+
+
+  // Too many re-renders. React limits the number of renders to prevent an infinite loop.
+  // render ---> tähendab useState-i parempoolse funktsiooni käivitamine ehk HTMLi uuendus
+  // render ---> HTMLi uuendus
 
   return (
     <div>
@@ -137,7 +181,7 @@ function Hinnad() {
           <button onClick={kustutaKolmas}>Kustuta kolmas</button>
           {hinnad.length >= 4 && <button onClick={kustutaNeljas}>Kustuta neljas</button>}
 
-
+          <h4>Hindasid on: {hinnad.length} tk</h4>
 
           {hinnad.map((hind, jrknr) => 
             <div key={jrknr}>
@@ -145,9 +189,10 @@ function Hinnad() {
               <button onClick={() => kustutaHind(jrknr)}>x</button> 
               <button onClick={() => lisaHind(hind)}>Lisa</button> 
             </div>)}
-          <div><h4>Hindasid on: {hinnad.length} </h4></div>
           <button onClick={() => uuendaHinnad([])} >Eemalda hinnad</button>
         </div>}
+
+        <div>Kogusumma on: {hinnadKokku()} </div>
  
         {hinnad.length === 0 && 
         <div>Pole ühtegi hinda nähtaval</div>}

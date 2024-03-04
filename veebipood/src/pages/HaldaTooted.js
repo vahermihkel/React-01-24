@@ -16,7 +16,7 @@ function HaldaTooted() {
     // 
     <div>
       {tooted.map((toode, indeks) => 
-        <div>
+        <div key={indeks}>
           {toode}
           <button onClick={() => kustuta(indeks)}>Kustuta</button>
           <button>Muuda</button>
