@@ -18,8 +18,6 @@ function MuudaToode() {
     tootedFailist[index] = nimiRef.current.value;
   }
 
-  // 11:37
-
   return (
     <div>
       <label>Toote nimi</label> <br />
