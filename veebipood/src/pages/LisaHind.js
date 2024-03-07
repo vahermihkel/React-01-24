@@ -13,8 +13,9 @@ function LisaHind() {
         // veateate näiteks toast.error() abil
         return;
     }
-
-    hinnadFailist.push(hindRef.current.value);
+    //                Boolean("false") --> false
+                          // "500" --> 500
+    hinnadFailist.push(Number(hindRef.current.value));
     hindRef.current.value = "";
   }
 

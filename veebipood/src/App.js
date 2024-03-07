@@ -19,6 +19,13 @@ import HaldaTootajad from './pages/HaldaTootajad';
 import HaldaEsindusi from './pages/HaldaEsindusi';
 import HaldaHindu from './pages/HaldaHindu';
 import YksToode from './pages/YksToode';
+import YksEsindus from './pages/YksEsindus';
+import YksTootaja from './pages/YksTootaja';
+import YksHind from './pages/YksHind';
+import MuudaEsindus from './pages/MuudaEsindus';
+import MuudaTootaja from './pages/MuudaTootaja';
+import MuudaHind from './pages/MuudaHind';
+import MuudaToode from './pages/MuudaToode';
 
 // 1 a -> 1000    1500
 // 2 a -> 2000
@@ -86,8 +93,20 @@ function App() {
           <Link className="navlink" to="/lisa-hind">
             <span>Lisa hind</span>
           </Link>
+          <Link className="navlink" to="/lisa-tootaja">
+            <span>Lisa töötaja</span>
+          </Link>
+          <Link className="navlink" to="/lisa-esindus">
+            <span>Lisa esindus</span>
+          </Link>
           <Link className="navlink" to="/halda-tootajad">
             <span>Halda töötajaid</span>
+          </Link>
+          <Link className="navlink" to="/halda-esindused">
+            <span>Halda esindusi</span>
+          </Link>
+          <Link className="navlink" to="/halda-hindu">
+            <span>Halda hindu</span>
           </Link>
         </div>
         <div>
@@ -112,8 +131,15 @@ function App() {
         <Route path="lisa-hind" element={ <LisaHind />} />
         <Route path="halda-tootajad" element={ <HaldaTootajad />} />
         <Route path="halda-esindused" element={ <HaldaEsindusi />} />
-        <Route path="halda-hinnad" element={ <HaldaHindu />} />
+        <Route path="halda-hindu" element={ <HaldaHindu />} />
         <Route path="toode/:index" element={ <YksToode />} />
+        <Route path="esindus/:index" element={ <YksEsindus />} />
+        <Route path="tootaja/:index" element={ <YksTootaja />} />
+        <Route path="hind/:index" element={ <YksHind />} />
+        <Route path="muuda-esindus/:index" element={ <MuudaEsindus />} />
+        <Route path="muuda-tootaja/:index" element={ <MuudaTootaja />} />
+        <Route path="muuda-hind/:index" element={ <MuudaHind />} />
+        <Route path="muuda-toode/:index" element={ <MuudaToode />} />
 
         <Route path="*" element={ <NotFound />} />
       </Routes>
@@ -123,3 +149,48 @@ function App() {
 }
  
 export default App;
+
+// 13.  07.03
+// 14.  14.03   11:00-14:15
+// 15.  18.03
+// 16.  21.03
+// 17.  25.03
+// 18.  08.04 ---> 2ak/h  10.00-11.30
+
+// 70ak/h / 4   17.5 kohtumispäev
+// Peaks olema Reactis tehtud
+// Youtubest vaadata mingit videoseeriat ja ise midagi sinna juurde tekitada
+// Veebipoodi
+
+// Ülesanne võtta tooted ja näidata neid xx kujul
+// 1. Vaadata, kas juba projektis on midagi sarnast tehtud
+// 2. Vaadata, kas olen ise juba midagi sarnast varasemalt teinud
+// 3. ChatGPT/Youtubes/Guugeldada  /   StackOverFlow
+// 4. Küsin kolleegilt abi
+
+// Algaja -> kolleeg 5min
+// 5-6 algajat   1täisajaga inimene aitab
+
+// Praktikale juba jõuda, siis üldiselt (90%+) jäetakse tööle
+
+
+// IT-magister -> õpetatakse kuidas ITga midagi ellu viia, pigem jutustav
+// TalTech -> väga hea tase back-end (Java). väga raske. 
+//            kirjutad palju õppejõududele sahtlisse
+// Tallinna Ülikool -> väga lihtne. JavaScript hea tase
+
+// Ülikooli mõte on:
+// 1) Sotsiaalne kapital -> sõbrad/tuttavad
+// 2) Väga lihtne tööle jõuda
+// 3) Pläma keskel koodi
+
+// Ülikooli miinus:
+// Kõigest natuke -> Tallinna Ülikool annab Reacti sama palju kui siin koolitusel
+// Testija, Back-end
+// Akadeemilisus -> 
+
+// 20% lõpetavad 3 aastaga
+// 20% lõpetavad 4 aastaga
+// 20% ei lõpeta üldse
+// 20% võtavad paberid 3 aasta keskel välja
+// 20% lõpetavad 5+ aastaga
