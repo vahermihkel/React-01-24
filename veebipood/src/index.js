@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-toastify/dist/ReactToastify.css';
+import 'leaflet/dist/leaflet.css';
 import './index.css'; // minu .css fail võiks jääda allapoole, sest minu oma on muudetav
 import App from './App';
 //import reportWebVitals from './reportWebVitals';

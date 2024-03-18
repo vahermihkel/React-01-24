@@ -26,6 +26,8 @@ import MuudaEsindus from './pages/MuudaEsindus';
 import MuudaTootaja from './pages/MuudaTootaja';
 import MuudaHind from './pages/MuudaHind';
 import MuudaToode from './pages/MuudaToode';
+import Menyy from './components/Menyy';
+import { ContactUs } from './pages/ContactUs';
 
 // 1 a -> 1000    1500
 // 2 a -> 2000
@@ -56,58 +58,7 @@ function App() {
         </Link>
 
         <div>
-          <Link  className="navlink" to="/esindused">
-            <img src="/esindus.svg" alt="" />
-            <span>Esindused</span>
-          </Link>
-          <Link className="navlink" to="/arikliendile">
-          <img src="/ari.svg" alt="" />
-            <span>Ärikliendile</span>
-          </Link>
-          <Link className="navlink" to="/osta-kinkekaart">
-          <img src="/kinkekaart.svg" alt="" />
-            <span>Kinkekaart</span>
-          </Link>
-          <Link className="navlink" to="/lisa-toode">
-            <span>Lisa toode</span>
-          </Link>
-          <Link className="navlink" to="/ostukorv">
-          <img src="/shopping.svg" alt="" />
-            <span>Ostukorv</span>
-          </Link>
-          <Link className="navlink" to="/seaded">
-            <span>Seaded</span>
-          </Link>
-          <Link className="navlink" to="/hinnad">
-            <span>Hinnad</span>
-          </Link>
-          <Link className="navlink" to="/tooted">
-            <span>Tooted</span>
-          </Link>
-          <Link className="navlink" to="/tootajad">
-            <span>Töötajad</span>
-          </Link>
-          <Link className="navlink" to="/halda">
-            <span>Halda tooteid</span>
-          </Link>
-          <Link className="navlink" to="/lisa-hind">
-            <span>Lisa hind</span>
-          </Link>
-          <Link className="navlink" to="/lisa-tootaja">
-            <span>Lisa töötaja</span>
-          </Link>
-          <Link className="navlink" to="/lisa-esindus">
-            <span>Lisa esindus</span>
-          </Link>
-          <Link className="navlink" to="/halda-tootajad">
-            <span>Halda töötajaid</span>
-          </Link>
-          <Link className="navlink" to="/halda-esindused">
-            <span>Halda esindusi</span>
-          </Link>
-          <Link className="navlink" to="/halda-hindu">
-            <span>Halda hindu</span>
-          </Link>
+          <Menyy />
         </div>
         <div>
           <button onClick={tumedaks}>Tume</button>
@@ -118,6 +69,7 @@ function App() {
  
       <Routes>
         <Route path="avaleht" element={ <Avaleht />} />
+        <Route path="kontakteeru" element={ <ContactUs />} />
         <Route path="esindused" element={ <Esindused />} />
         <Route path="arikliendile" element={ <Ariklient />} />
         <Route path="osta-kinkekaart" element={ <Kinkekaart />} />
@@ -135,7 +87,7 @@ function App() {
         <Route path="toode/:index" element={ <YksToode />} />
         <Route path="esindus/:index" element={ <YksEsindus />} />
         <Route path="tootaja/:index" element={ <YksTootaja />} />
-        <Route path="hind/:index" element={ <YksHind />} />
+        <Route path="hind/:indeks" element={ <YksHind />} />
         <Route path="muuda-esindus/:index" element={ <MuudaEsindus />} />
         <Route path="muuda-tootaja/:index" element={ <MuudaTootaja />} />
         <Route path="muuda-hind/:index" element={ <MuudaHind />} />
@@ -151,10 +103,11 @@ function App() {
 export default App;
 
 // 13.  07.03
-// 14.  14.03   11:00-14:15
-// 15.  18.03
-// 16.  21.03
-// 17.  25.03
+// 14.  14.03   11:00-14:15   veebipood lõpuni
+// 15.  18.03   uue Eng projekti -> tõlge/Bootstrap-MUI/Tooted
+//              ostukorvi kogused
+// 16.  21.03   10:00-13:15 disain
+// 17.  25.03   Kujundus, pakiautomaadid, ostukorvi salvestus
 // 18.  08.04 ---> 2ak/h  10.00-11.30
 
 // 70ak/h / 4   17.5 kohtumispäev

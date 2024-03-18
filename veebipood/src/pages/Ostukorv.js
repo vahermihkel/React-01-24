@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ostukorvFailist from "../data/ostukorv.json";
 
 function Ostukorv() {
-  const [ostukorv, uuendaOstukorv] = useState(["Coca", "Fanta", "Sprite"]);
+  const [ostukorv, uuendaOstukorv] = useState(ostukorvFailist);
 
   const lisaOstukorviRedBull = () => {
-    ostukorv.push("Red bull");
+    ostukorv.push({"nimi": "Red bull", "hind": 5123});
     uuendaOstukorv(ostukorv.slice());
   }
 
@@ -17,6 +18,12 @@ function Ostukorv() {
   const lisaOstukorvi = (uusToode) => {
     ostukorv.push(uusToode);
     uuendaOstukorv(ostukorv.slice());
+  }
+
+  const arvutaKogusumma = () => {
+    let summa = 0;
+    ostukorv.forEach(toode => summa = summa + toode.hind);
+    return summa;
   }
 
   return (
@@ -35,10 +42,13 @@ function Ostukorv() {
       { ostukorv.map((toode, index) => 
         <div key={index}>
           {index}.
-          {toode}
+          <img style={{width: "50px"}} src={toode.pilt} alt="" />
+          {toode.nimi} - {toode.hind} €
           <button onClick={() => kustutaOstukorvist(index)}>Kustuta</button>
           <button onClick={() => lisaOstukorvi(toode)}>Lisa lõppu üks juurde</button>
         </div>) }
+
+      <div>Kogusumma: {arvutaKogusumma()} €</div>
 
       { ostukorv.length === 0 &&
       <div>

@@ -15,7 +15,10 @@ function LisaHind() {
     }
     //                Boolean("false") --> false
                           // "500" --> 500
-    hinnadFailist.push(Number(hindRef.current.value));
+    hinnadFailist.push({
+      "number": Number(hindRef.current.value),
+      "lisaja": "Mihkel"
+    });
     hindRef.current.value = "";
   }
 

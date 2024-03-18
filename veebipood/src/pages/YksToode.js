@@ -17,9 +17,10 @@ function YksToode() {
 
   return (
     <div>
-      <h2>{leitud}</h2>
+      <h2>{leitud.nimi}</h2>
       <hr />
-      <span>1.5€</span>
+      <div>{leitud.hind} €</div>
+      <img src={leitud.pilt} alt="" />
     </div>
   )
 }

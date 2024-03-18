@@ -100,6 +100,9 @@ function Tootajad() {
       tootajad.forEach(tootaja => summa += tootaja.length);
       return summa;
    }
+
+   // Töötajad objektideks
+   // {"nimi": "Urmet", "email": "", "amet": "", "vanus": 55}
  
  
   return (

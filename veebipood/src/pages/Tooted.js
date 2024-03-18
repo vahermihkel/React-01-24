@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import tootedFailist from "../data/tooted.json";
+import ostukorvFailist from "../data/ostukorv.json";
 import { Link } from 'react-router-dom'; // Link on URLiga seonduv ja kõik URLga seonduvad
 //  tulevad react-router-dom'st   (Route, Routes, BrowserRouter)
  
@@ -15,24 +16,30 @@ function Tooted() {
   const [tooted, uuendaTooted] = useState(tootedFailist);
     
     const sorteeriAZ = () => {
-        tooted.sort();
-        uuendaTooted(tooted.slice());
-    }
-
-    const sorteeriZA = () => {
-      tooted.sort((a,b) => b.localeCompare(a));
+      tooted.sort((a,b) => a.nimi.localeCompare(b.nimi));
       uuendaTooted(tooted.slice());
     }
 
+    const sorteeriZA = () => {
+      // {"id": 1, "eng_nimi": "", "nimi": "Nobe", ...}.localeCompare()
+      tooted.sort((a,b) => b.nimi.localeCompare(a.nimi));
+      uuendaTooted(tooted.slice());
+    }
+
+    // {"id": 1, "eng_nimi": "", "nimi": "Nobe", ...}.length
     const sorteeriTahedKasvavalt = () => {
-      tooted.sort((a, b) => a.length - b.length);
+      tooted.sort((a, b) => a.nimi.length - b.nimi.length);
       uuendaTooted(tooted.slice());
     }
 
 
     const sorteeriTahedKahanevalt = () => {
-      tooted.sort((a, b) => b.length - a.length);
+      tooted.sort((a, b) => b.nimi.length - a.nimi.length);
       uuendaTooted(tooted.slice());
+    }
+
+    const lisaOstukorvi = (toode) => {
+      ostukorvFailist.push(toode);
     }
 
   return (
@@ -45,12 +52,15 @@ function Tooted() {
           <button onClick={sorteeriTahedKahanevalt} >Sorteeri tähed kahanevalt</button>
           {tooted.map((toode,i) => 
             <div key={i}>
-              {toode}
+              <img className="pilt" src={toode.pilt} alt="" />
+              <div>{toode.nimi}</div>
+              <div>{toode.hind} €</div>
               {/* vasakul pool kaldkriips - muidu lisab olemasolevale URL-le
                ja paremal pool kaldkriips - muidu number tuleb URL-i eelmise sõna otsa  */}
               <Link to={"/toode/" + i}>
                 <button>Vaata lähemalt</button>
               </Link>
+              <button onClick={() => lisaOstukorvi(toode)}>Lisa ostukorvi</button>
             </div>)}
           <h4>Tooteid on {tooted.length} (tk)</h4>
         </div>

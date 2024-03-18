@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Map from '../components/Map';
 
 // tumesinine - liigitus. JS: function, const, let. HTML: div, button, img
 //             reserveeritud sõna. JS: true, false, undefined, null
@@ -41,6 +42,7 @@ import { useState } from 'react'
 
 
 function Avaleht() {
+  const [coordinaates, setCoordinates] = useState({lngLat: [59.4378, 24.7574], zoom: 11});
   const [kogus, uuendaKogus] = useState(Number(localStorage.getItem("kogus")) || 0); // kogus, summa, kogusumma, hind
   const [sonum, uuendaSonum] = useState("Uuenda kogust!"); // postiindeks, isikukood, telefoninumber, nime, e-mail
   const [laigitud, uuendaLaigitud] = useState(false); // makstud, sisselogitud, tellitud, registreerunud, täisealine
@@ -102,6 +104,16 @@ function Avaleht() {
       <button disabled={kogus === 0} onClick={vahenda}>-</button>  
       <span className={kogus >= 10 ? "kuldne" : null}>{kogus}</span>
       <button onClick={suurenda}>+</button>  
+
+      <br /><br />
+
+      <button onClick={() => setCoordinates({lngLat: [59.4378, 24.7574], zoom: 11})}>Kõik poed</button>
+      <button onClick={() => setCoordinates({lngLat: [59.4231, 24.7991], zoom: 13})}>Ülemiste</button>
+      <button onClick={() => setCoordinates({lngLat: [59.4277, 24.7193], zoom: 13})}>Kristiine</button>
+      <button onClick={() => setCoordinates({lngLat: [59.4411, 24.7348], zoom: 13})}>Balti jaama turg</button>
+      <button onClick={() => setCoordinates({lngLat: [58.3779, 26.7305], zoom: 13})}>Tasku</button>
+      <Map mapCoordinaates={coordinaates}  />
+
     </div>
   )
 }

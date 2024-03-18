@@ -18,7 +18,8 @@ function HaldaTooted() {
     <div>
       {tooted.map((toode, indeks) => 
         <div key={indeks}>
-          {toode}
+          <img style={{width: "50px"}} src={toode.pilt} alt="" />
+          {toode.nimi} - {toode.hind} €
           <button onClick={() => kustuta(indeks)}>Kustuta</button>
           {/* kui esimest / pole, siis liidab olemasolevale URL-le juurde
           kui teist / pole, siis liidab muutuja sõna otsa */}

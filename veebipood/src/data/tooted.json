@@ -1,1 +1,6 @@
-["Nobe", "BMW", "Tesla", "Saab"]
+[
+  {"nimi": "Nobe", "hind": 25000, "aktiivne": true, "pilt": "https://visionest.institute/wp-content/uploads/2023/07/i_6_NOBE-3.jpg"},
+  {"nimi": "BMW", "hind": 35000, "aktiivne": true, "pilt": "https://imgd.aeplcdn.com/642x336/n/cw/ec/132513/7-series-exterior-right-front-three-quarter-3.jpeg"},
+  {"nimi": "Tesla", "hind": 85000, "aktiivne": false, "pilt": "https://cdn.motor1.com/images/mgl/Mk3qg6/s3/2017-tesla-roadster-deck-model-petersen-automotive-museum.jpg"},
+  {"nimi": "Saab", "hind": 55000, "aktiivne": true, "pilt": "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/5b8f3efe-a091-4df2-be7d-6e49156acaff/fd1482cb-2894-43d0-9a35-28885c800790.png"}
+]

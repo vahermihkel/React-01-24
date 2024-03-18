@@ -79,6 +79,9 @@ const kustutaTallinnaEsindus =(index) => {
   keskused.push(nimiRef.current.value);
   uuendaKeskused(keskused.slice());
 }
+
+// Esindused objektideks
+// {"nimi": "Kristiine", "aadress": "", "tel": ""}
  
   return (
     <div>

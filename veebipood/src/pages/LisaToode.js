@@ -5,6 +5,9 @@ import tootedFailist from "../data/tooted.json";
 function LisaToode() {
   const [sonum, muudaSonum] = useState("");
   const inputiLuger = useRef(); // inputi seest kasutaja sisestuse lugemiseks
+  const hindRef = useRef();
+  const piltRef = useRef();
+  const aktiivsusRef = useRef();
 
   // function lisa() {
 
@@ -19,7 +22,14 @@ function LisaToode() {
     } else {
       // muudaSonum("Toode lisatud: " + inputiLuger.current.value);
       toast.success("Toode lisatud: " + inputiLuger.current.value);
-      tootedFailist.push(inputiLuger.current.value);
+      tootedFailist.push(
+        {
+          "nimi": inputiLuger.current.value, 
+          "hind": Number(hindRef.current.value), 
+          "aktiivne": aktiivsusRef.current.checked, 
+          "pilt": piltRef.current.value
+        }
+      );
       inputiLuger.current.value = "";
       // ma ei pane useState funktsiooni väljakutset
       // muuda/uuendaTooted vms sp, et ei uuenda HTMLi
@@ -49,13 +59,16 @@ function LisaToode() {
         <label>Toote nimetus:</label>
         <input onChange={kontrolli} type="text" ref={inputiLuger} /><br></br>
 
-        <label htmlFor="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"/><br></br>
-        {/* <input type="submit" value="Submit"/> */}
+        <label>Toote hind:</label>
+        <input type="number" ref={hindRef} /><br></br>
+
+        <label>Toote pilt:</label>
+        <input type="text" ref={piltRef} /><br></br>
+
+        <label>Toote aktiivsus:</label>
+        <input type="checkbox" ref={aktiivsusRef} /><br></br>
 
         <button disabled={sonum !== ""} onClick={lisa}>Sisesta</button>
-
-      {/* </form> */}
 
       <ToastContainer
         position="bottom-right"
