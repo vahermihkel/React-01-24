@@ -2,9 +2,18 @@ import React, { useState } from 'react'
 import productsFromFile from "../../data/products.json";
 // import cartFromFile from "../../data/cart.json";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import "../../css/HomePage.css";
 
 function HomePage() {
-    const [products, setProducts] = useState(productsFromFile);
+  // Reacti hookid:
+  // 1. Peab olema imporditud
+  // 2. Peab algama use- eesliidesega
+  // 3. Ei tohi olla funktsiooni sees kus ma teda kasutusele võtan
+  // 4. Ei tohi olla tingimuslik (ei tohi teha enne teda early return)
+  // 5. Alati sulud lõpus kui teda kasutusele võtan
+    const { t } = useTranslation(); // i18next mooduli enda tehtud hook
+    const [products, setProducts] = useState(productsFromFile); // reacti enda tehtud hook
 
     const addCart = (product) => {
       // "["Tesla", "Nobe", "BMW"]" -> ["Tesla", "Nobe", "BMW"]
@@ -34,18 +43,20 @@ function HomePage() {
 
   return (
     <div>
-      {products.map((product, index) =>
-          <div key={product.id}>
-              <img style={{width: "100px"}} src="{product.image}" alt="" />
-              <div>{product.title}</div>
-              <div>{product.price}€</div>
+        <div className="products">
+          {products.map((product, index) =>
+            <div key={product.id}>
+                <img style={{width: "100px"}} src={product.image} alt="" />
+                <div>{product.title}</div>
+                <div>{product.price}€</div>
 
-            <Link to={"/product/" + index}>
-              <button>View details</button>
-            </Link>
-              <button onClick={() => addCart(product)}>Add to cart</button>
-          </div>
-          )}
+              <Link to={"/product/" + index}>
+                <button>{t("view-details")}</button>
+              </Link>
+                <button onClick={() => addCart(product)}>{t("add-to-cart")}</button>
+            </div>
+            )}
+        </div>
     </div>
   )
 }

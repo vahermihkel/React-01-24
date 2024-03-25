@@ -56,4 +56,4 @@ export default App;
 // 17.  25.03   tõlge/Bootstrap-MUI/Tooted  ---> KOJU proovitöö, Nortali Bakery-Shop
 // ostukorvis iga kord täpselt 2 komakohta, pakiautomaatides ainult eesti omad, loader
 //      02.04   T   9.30-10.15
-// 18.  08.04 ---> 2ak/h  10.00-11.30
+// 18.  08.04??? ---> 2ak/h  10.00-11.30???

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Spinner } from 'react-bootstrap';
 
 function Supplier() {
   const [products, setProducts] = useState([]);
@@ -10,6 +11,13 @@ function Supplier() {
       .then(response => response.json()) // KOGU tagastus ehk andmed koos metaandmetega (staatuskood)
       .then(json => setProducts(json)) // Siia tuleb see, mida päriselt lehel näen (JSON kujul)
   }, []);
+
+  if (products.length === 0) {
+    return <div>
+      <Spinner />
+      Loading...
+    </div>
+  }
 
   return (
     <div>{products.map((product, index )=> 

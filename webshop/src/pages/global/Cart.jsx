@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // import cartFromFile from "../../data/cart.json"
+import "../../css/Cart.css";
 
 function Cart() {                 // 1. ja 2. samm
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
@@ -10,6 +11,13 @@ function Cart() {                 // 1. ja 2. samm
       .then(res => res.json())
       .then(body => setParcelMachines(body));
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://www.smartpost.ee/locations.json")
+  //     .then(res => res.json())
+  //     .then(body => setSmartPost(body));
+  // }, []);
+
 
   const deleteFromCart =(index) => {
     cart.splice(index, 1); // 3. samm
@@ -40,14 +48,13 @@ function Cart() {                 // 1. ja 2. samm
    const calculateTotal = () => {
      let amount = 0;
      cart.forEach(product => amount = amount + product.toode.price * product.kogus);
-     return amount;
+     return amount.toFixed(2);
    }
 
   return (
     <div>
         {cart.length === 0 && <div>Your shopping cart is currently empty</div>}
         {cart.length === 0 && <img src="/empty.svg" alt="" />}
-        <div>Total cost: {calculateTotal()}€</div>
   
       {cart.length > 0 &&
       <div>
@@ -56,31 +63,39 @@ function Cart() {                 // 1. ja 2. samm
       </div>}
 
         {cart.map((product, index) => 
-          <div key={index}>
-            {/* {index}. */}
-            <img style={{width: "50px"}} src={product.toode.image} alt="" />
-            {product.toode.title} - {product.toode.price} €
-            {/* 
-            kuvage KODUS rating välja
-            pange kogusumma kõrvale toodete keskmine reiting:
-            reitingute kogusumma jagatud koguarv
-            ärge arvestage koguseid. pluus 6tk, kell 3tk.
-            */}
-            <button onClick={() => decreaseQuantity(index)}>-</button>
-            <div>{product.kogus} tk</div>
-            <button onClick={() => increaseQuantity(index)}>+</button>
-            <div>{product.toode.price * product.kogus} €</div>
-            <button onClick={() => deleteFromCart(index)}>Delete</button> 
-            {/* <button onClick={() => addToCart(product)}>Add one to the end</button>  */}
+          <div className="product" key={index}>
+            <div className="number">{index + 1}</div>
+            <img className="image" style={{width: "50px"}} src={product.toode.image} alt="" />
+            <div className="title">{product.toode.title}</div>
+            <div className="price">{product.toode.price.toFixed(2)} €</div>
+            <div className="quantity">
+              <img className="button" onClick={() => decreaseQuantity(index)} src="/minus.png" alt="" />
+              <div>{product.kogus} tk</div>
+              <img className="button" onClick={() => increaseQuantity(index)} src="/plus.png" alt="" />
+            </div>
+            <div className="total">{(product.toode.price * product.kogus).toFixed(2)} €</div>
+            <img className="button" onClick={() => deleteFromCart(index)} src="/remove.png" alt="" />
           </div> )}
 
-
-          <select>
-            {parcelMachines.map(pm => <option>{pm.NAME}</option>)} 
-          </select>
+          {cart.length > 0 &&
+          <React.Fragment>
+            <div>Total cost: {calculateTotal()}€</div>
+            <select>
+              {parcelMachines
+                .filter(pm => pm.A0_NAME === "EE")
+                .map(pm => <option>{pm.NAME}</option>)} 
+            </select>
+          </React.Fragment>}
 
     </div>
   )
 }
 
 export default Cart
+
+/* 
+kuvage KODUS rating välja
+pange kogusumma kõrvale toodete keskmine reiting:
+reitingute kogusumma jagatud koguarv
+ärge arvestage koguseid. pluus 6tk, kell 3tk.
+*/
